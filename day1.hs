@@ -8,15 +8,15 @@ split list =
             let (evens, odds) = split xs
             in (x:odds, evens)
 
-amyCompare :: ([Int],[Int]) -> [Int]
-amyCompare ([],[]) = []
-amyCompare (x:xs,y:ys) = x-y : amyCompare (xs,ys)
+compareLists :: ([Int],[Int]) -> [Int]
+compareLists ([],[]) = []
+compareLists (x:xs,y:ys) = x-y : compareLists (xs,ys)
 
-amySort :: ([Int],[Int]) -> ([Int],[Int])
-amySort (x,y) = (sort x, sort y)
+sortTwoLists :: ([Int],[Int]) -> ([Int],[Int])
+sortTwoLists (x,y) = (sort x, sort y)
 
-amySum :: [Int] -> Int
-amySum = foldr ((+) . abs) 0
+absSum :: [Int] -> Int
+absSum = foldr ((+) . abs) 0
 
 main :: IO ()
 main = do
@@ -24,9 +24,9 @@ main = do
    content <- readFile "day1input.txt"
    let numbers = split (map read $ words content :: [Int]) 
    putStrLn ("The input is " ++ show numbers)
-   let sorted = amySort numbers 
+   let sorted = sortTwoLists numbers 
    putStrLn ("The sorted is " ++ show sorted)
-   let zipped = amyCompare sorted
+   let zipped = compareLists sorted
    putStrLn ("The zipped is " ++ show zipped)
-   let summed = amySum zipped
+   let summed = absSum zipped
    putStrLn ("The summed is " ++ show summed)
