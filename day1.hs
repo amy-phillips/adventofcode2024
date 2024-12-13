@@ -16,8 +16,7 @@ amySort :: ([Int],[Int]) -> ([Int],[Int])
 amySort (x,y) = (sort x, sort y)
 
 amySum :: [Int] -> Int
-amySum [] = 0
-amySum (x:xs) = abs(x) + amySum xs
+amySum = foldr ((+) . abs) 0
 
 main :: IO ()
 main = do
